@@ -1,0 +1,3 @@
+export function detectPackageVersion(manifest,name){const pools=[manifest.dependencies,manifest.devDependencies,manifest.peerDependencies]; for(const p of pools){if(p?.[name]) return String(p[name]);} return null;}
+export function makeDocsQuery({name,topic,version}){if(!name) throw new Error('package name required'); return {package:name,topic:String(topic??'').trim(),version:version??null,query:[name,version&&`version ${version}`,topic].filter(Boolean).join(' ')};}
+export function selectDocsExcerpts(items,{maxChars=12000}={}){let used=0; const out=[]; for(const item of items){const text=String(item.text??''); if(used+text.length>maxChars) continue; out.push({source:String(item.source??''),text}); used+=text.length;} return out;}
