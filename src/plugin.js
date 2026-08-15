@@ -1,1 +1,0 @@
-import {makeDocsQuery,selectDocsExcerpts} from './core.js'; export function registerDocs(ctx,{lookup,resolveVersion}){ctx.command?.('docs',async(name,...topic)=>{const version=await resolveVersion?.(name); const q=makeDocsQuery({name,topic:topic.join(' '),version}); const hits=await lookup(q); return JSON.stringify({query:q,excerpts:selectDocsExcerpts(hits)},null,2);});}
