@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { detectPackageVersion, makeDocsQuery, selectDocsExcerpts } from '../src/core.js';
+
+test('detects manifest version', () => assert.equal(detectPackageVersion({ dependencies: { react: '^19.0.0' } }, 'react'), '^19.0.0'));
+test('builds version aware query', () => assert.match(makeDocsQuery({ name: 'react', topic: 'useEffect', version: '19' }).query, /version 19/));
+test('respects excerpt budget', () => assert.equal(selectDocsExcerpts([{ source: 'a', text: '1234' }, { source: 'b', text: '5678' }], { maxChars: 4 }).length, 1));
