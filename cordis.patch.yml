@@ -1,3 +1,4 @@
-- id: dsh-docs
-  name: '@mkaliezz/dsh-docs'
-  config: {}
+- insert:
+    - id: dsh-docs
+      name: '@mkaliezz/dsh-docs'
+      config: {}
